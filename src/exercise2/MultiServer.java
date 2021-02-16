@@ -1,4 +1,4 @@
-package ex_2;
+package exercise2;
 
 import java.io.*;
 import java.net.ServerSocket;

@@ -1,4 +1,4 @@
-package ex_4;
+package exercise4;
 
 import java.rmi.Remote;
 import java.rmi.RemoteException;

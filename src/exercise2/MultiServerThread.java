@@ -1,6 +1,6 @@
-package ex_2;
+package exercise2;
 
-import ex_1.RPSGame;
+import exercise1.RPSGame;
 
 import java.io.BufferedReader;
 import java.io.IOException;

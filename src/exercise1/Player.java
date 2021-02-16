@@ -1,4 +1,4 @@
-package ex_1;
+package exercise1;
 
 /**
  * @author Steve Labrinos [stalab at linuxmail.org] on 15/2/21

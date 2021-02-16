@@ -1,4 +1,4 @@
-package ex_4;
+package exercise4;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;

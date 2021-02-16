@@ -1,6 +1,6 @@
-package ex_4;
+package exercise4;
 
-import ex_1.RPSGame;
+import exercise1.RPSGame;
 
 import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
