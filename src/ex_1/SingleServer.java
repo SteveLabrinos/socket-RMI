@@ -4,14 +4,14 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class SimpleServer {
+public class SingleServer {
     private static final int CLIENT_PORT = 10007;
     protected Socket clientSocket;
     private final int clientPort;
 
-    private SimpleServer (int clientPort) { this. clientPort = clientPort; }
+    private SingleServer(int clientPort) { this. clientPort = clientPort; }
 
-    private void getClientSocket(Socket clientSoc){
+    private void setClientSocket(Socket clientSoc){
         this.clientSocket = clientSoc;
     }
 
@@ -37,16 +37,16 @@ public class SimpleServer {
     }
 
     public static void main(String[] args) throws IOException {
-        SimpleServer server = new SimpleServer(CLIENT_PORT);
+        SingleServer server = new SingleServer(CLIENT_PORT);
         ServerSocket serverSocketForClients = new ServerSocket(CLIENT_PORT);
 
         //  Open new socket on port 10007
-        ServerSocket serverSocket = null;
+//        ServerSocket serverSocket = null;
         try {
             while (true){
                 //  One client socket is opened and waiting for connection
                 System.out.println ("Αναμονή σύνδεσης κάποιου client...");
-                server.getClientSocket(serverSocketForClients.accept());
+                server.setClientSocket(serverSocketForClients.accept());
                 //  Establishing connection with the client
                 server.execute();
             }

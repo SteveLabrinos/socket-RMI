@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-public class SimpleClient {
+public class SingleClient {
   private static final int SERVER_PORT = 10007;
   private static final String SERVER_IP = "127.0.0.1";
 
@@ -13,13 +13,13 @@ public class SimpleClient {
   private BufferedReader in = null;
   private PrintWriter out = null;
 
-  public SimpleClient(String serverHostname, int serverPort) {
+  public SingleClient(String serverHostname, int serverPort) {
     this.serverHostname = serverHostname;
     this.serverPort = serverPort;
   }
 
   public static void main(String[] args) throws IOException {
-    SimpleClient client = new SimpleClient(SERVER_IP, SERVER_PORT);
+    SingleClient client = new SingleClient(SERVER_IP, SERVER_PORT);
 
     client.execute();
   }
