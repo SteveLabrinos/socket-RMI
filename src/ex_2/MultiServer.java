@@ -24,6 +24,7 @@ public class MultiServer {
                 //  Creating a new thread when a client connects
                 MultiServerThread serverThread = new MultiServerThread(serverSocketForClients.accept());
                 System.out.println("Επιτυχής σύνδεση. Δημιουργήθηκε νέο νήμα για την εξυπηρέτησή του");
+                //  starting the thread to begin the game
                 serverThread.start();
             }
         }catch (IOException e){
