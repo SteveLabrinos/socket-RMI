@@ -37,6 +37,7 @@ public class SingleServer {
     }
 
     public static void main(String[] args) throws IOException {
+        //  Creating a new server object to access its methods
         SingleServer server = new SingleServer(CLIENT_PORT);
         ServerSocket serverSocketForClients = new ServerSocket(CLIENT_PORT);
 

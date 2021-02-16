@@ -9,17 +9,10 @@ import java.net.ServerSocket;
  */
 
 public class MultiServer {
+    //  Client's port
     private static final int CLIENT_PORT = 10008;
-    //  Object's client port. initialized on the constructor. CLIENT_PORT for this exercise
-    private final int clientPort;
-
-    private MultiServer (int clientPort) { this. clientPort = clientPort; }
-
-    public int getClientPort () { return this.clientPort; }
 
     public static void main(String[] args) throws IOException {
-        //  Creating a new server object to access its methods
-        MultiServer server = new MultiServer(CLIENT_PORT);
         //  ServerSocket to invoke the accept method, that returns the client socket
         ServerSocket serverSocketForClients = new ServerSocket(CLIENT_PORT);
         //  Infinite loop that creates a new thread for each client that connects
@@ -34,7 +27,7 @@ public class MultiServer {
                 serverThread.start();
             }
         }catch (IOException e){
-            System.err.println("Αδυναμία σύνδεσης στην πόρτα: " + server.getClientPort());
+            System.err.println("Αδυναμία σύνδεσης στην πόρτα: " + CLIENT_PORT);
             System.exit(1);
         }
     }
