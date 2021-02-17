@@ -12,6 +12,7 @@ public class SingleClient {
   private final int serverPort;
   private BufferedReader in = null;
   private PrintWriter out = null;
+  private Socket controlSocket;
 
   public SingleClient(String serverHostname, int serverPort) {
     this.serverHostname = serverHostname;
@@ -27,7 +28,7 @@ public class SingleClient {
   private void connect() {
     System.out.println("Σύνδεση στον server " + serverHostname + " στην πόρτα: " + this.serverPort);
     try {
-      Socket controlSocket = new Socket(serverHostname, this.serverPort);
+      controlSocket = new Socket(serverHostname, this.serverPort);
       in = new BufferedReader(new InputStreamReader(controlSocket.getInputStream()));
       out = new PrintWriter(controlSocket.getOutputStream(), true);
       System.out.println("Επιτυχής συνδεση");
@@ -52,18 +53,16 @@ public class SingleClient {
     while ((fromServer = in.readLine()) != null) {
       System.out.println("Server: " + fromServer);
 
-      if (fromServer.equals("GAME OVER")) {
-        break;
-      }
-
       System.out.print("Επιλογή: ");
       fromUser = stdIn.readLine();
 
-      if (fromUser != null) {
-//        System.out.println("Client: " + fromUser);
-        out.println(fromUser);
-      }
-    }
-  }
+      if (fromUser != null) out.println(fromUser);
 
+      if (fromServer.equals("GAME OVER")) break;
+    }
+    // Close the streams before exit
+    in.close();
+    out.close();
+    controlSocket.close();
+  }
 }
