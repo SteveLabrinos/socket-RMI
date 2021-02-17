@@ -9,6 +9,7 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class Master extends Thread {
   static final int CLIENT_PORT = 10018;
   static final int SLAVE_PORT = 10028;
+  //  Using concurrent type of list so the MasterHandler threads can interact with safety
   private static final CopyOnWriteArrayList<MasterHandler> clients = new CopyOnWriteArrayList<>();
   private static final CopyOnWriteArrayList<MasterHandler> slaves = new CopyOnWriteArrayList<>();
 
@@ -47,8 +48,7 @@ public class Master extends Thread {
           connectionType = "slave";
         }
 
-        System.out.println(
-            "Επιτυχής σύνδεση "
+        System.out.println("Επιτυχής σύνδεση "
                 + connectionType
                 + ". Δημιουργήθηκε νέο νήμα για την εξυπηρέτησή του");
 

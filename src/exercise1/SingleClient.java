@@ -1,8 +1,13 @@
 package exercise1;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
+
+/** @author Steve Labrinos [stalab at linuxmail.org] on 15/2/21 */
 
 public class SingleClient {
   private static final int SERVER_PORT = 10007;
@@ -14,6 +19,7 @@ public class SingleClient {
   private PrintWriter out = null;
   private Socket controlSocket;
 
+  //    Client constructor providing the connection string parameters
   public SingleClient(String serverHostname, int serverPort) {
     this.serverHostname = serverHostname;
     this.serverPort = serverPort;
@@ -26,6 +32,7 @@ public class SingleClient {
   }
 
   private void connect() {
+    //  Establishing the connection to the Server
     System.out.println("Σύνδεση στον server " + serverHostname + " στην πόρτα: " + this.serverPort);
     try {
       controlSocket = new Socket(serverHostname, this.serverPort);
@@ -53,12 +60,14 @@ public class SingleClient {
     while ((fromServer = in.readLine()) != null) {
       System.out.println("Server: " + fromServer);
 
+      //  Exit when the server responds with GAME OVER
+      if (fromServer.equals("GAME OVER")) break;
+
+      //  Read users input to pass to the server
       System.out.print("Επιλογή: ");
       fromUser = stdIn.readLine();
 
       if (fromUser != null) out.println(fromUser);
-
-      if (fromServer.equals("GAME OVER")) break;
     }
     // Close the streams before exit
     in.close();

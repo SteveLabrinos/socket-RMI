@@ -7,10 +7,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
-/**
- * @author Steve Labrinos [stalab at linuxmail.org] on 16/2/21
- *
- */
+/** @author Steve Labrinos [stalab at linuxmail.org] on 16/2/21 */
 
 public class ParallelClient {
   //  Server port and ip address of the server
@@ -19,9 +16,11 @@ public class ParallelClient {
 
   private final String serverHostname;
   private final int serverPort;
+  private Socket controlSocket;
   private BufferedReader in = null;
   private PrintWriter out = null;
 
+  //    Client constructor providing the connection string parameters
   public ParallelClient(String serverHostname, int serverPort) {
     this.serverHostname = serverHostname;
     this.serverPort = serverPort;
@@ -34,9 +33,10 @@ public class ParallelClient {
   }
 
   private void connect() {
+    //  Establishing the connection to the Server
     System.out.println("Σύνδεση στον server " + serverHostname + " στην πόρτα: " + this.serverPort);
     try {
-      Socket controlSocket = new Socket(serverHostname, this.serverPort);
+      controlSocket = new Socket(serverHostname, this.serverPort);
       in = new BufferedReader(new InputStreamReader(controlSocket.getInputStream()));
       out = new PrintWriter(controlSocket.getOutputStream(), true);
       System.out.println("Επιτυχής συνδεση");
@@ -61,17 +61,18 @@ public class ParallelClient {
     while ((fromServer = in.readLine()) != null) {
       System.out.println("Server: " + fromServer);
 
-      if (fromServer.equals("GAME OVER")) {
-        break;
-      }
+      //  Exit when the server responds with GAME OVER
+      if (fromServer.equals("GAME OVER")) break;
 
+      //  Read users input to pass to the server
       System.out.print("Επιλογή: ");
       fromUser = stdIn.readLine();
 
-      if (fromUser != null) {
-        out.println(fromUser);
-      }
+      if (fromUser != null) out.println(fromUser);
     }
+    // Close the streams before exit
+    in.close();
+    out.close();
+    controlSocket.close();
   }
-
 }

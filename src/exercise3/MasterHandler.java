@@ -42,7 +42,7 @@ public class MasterHandler extends Thread {
       if (!slaves.isEmpty()) {
         slaves.get(random.nextInt(slaves.size())).out.println(inputLine);
       } else {
-        System.out.println("Αγνοείται ο αριθμός: " + inputLine + " λόγω μη ύπαρξης κάποιου slave");
+        System.out.println("Αγνοείται ο αριθμός: " + inputLine + ", λόγω μη ύπαρξης κάποιου slave");
       }
     }
   }
