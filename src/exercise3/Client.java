@@ -72,7 +72,7 @@ public class Client extends Thread {
 
   @Override
   public void run() {
-    //  Client thread reproduced random numbers until the connection is killed
+    //  Client thread reproduces random numbers until the connection is killed
     while (true) {
       try {
         sleep(DELAY);

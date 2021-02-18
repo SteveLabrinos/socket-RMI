@@ -56,21 +56,7 @@ public class Slave {
     String fromServer;
     //  Getting random numbers for process from the Master
     while ((fromServer = in.readLine()) != null) {
-      //  Check if the number is already processed by this slave
-      try {
-        int num = Integer.parseInt(fromServer);
-        if (processedNumbers.contains(num)) {
-          out.println("Ο αριθμός " + num + " έχει ήδη επεξεργαστεί");
-        } else {
-          processedNumbers.add(num);
-        }
-      } catch (NumberFormatException e) {
-        System.out.println("Σφάλμα ανάγνωσης αριθμού");
-      }
-
-      //  Displaying the current slaves list of numbers locally
-      System.out.print("\nΑριθμοί που έχουν επεξεργαστεί μέχρι τώρα: ");
-      processedNumbers.forEach(p -> System.out.print(p + "  "));
+      slaveTask(fromServer);
     }
     //  Closing streams and the socket
     in.close();
